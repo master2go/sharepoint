@@ -101,4 +101,72 @@
   <div id="error"></div>
 
   <!-- SCHWEBENDE LEGENDE -->
-  <div id=
+  <div id="legend">
+    <h3>Legende</h3>
+    <p><strong>(7×7-Struktur)</strong>: An dieser Stelle wird die vollständige Ordnerstruktur angelegt:</p>
+    <ol>
+      <li>01 Organisation & Verwaltung</li>
+      <li>02 Personal</li>
+      <li>03 Konzeption & Qualität</li>
+      <li>04 Pädagogik / Fachliches</li>
+      <li>05 Finanzen & Verträge</li>
+      <li>06 Öffentlichkeitsarbeit</li>
+      <li>07 Archiv</li>
+    </ol>
+    <p><strong>08 Leitung (geschützt)</strong><br>
+       Bereich nur für Leitungen, vertraulich.</p>
+    <p><em>Ebene 2:</em> bis zu 7 Unterordner<br>
+       <em>Ebene 3:</em> frei durch Standort benennbar</p>
+  </div>
+
+  <!-- MINDMAP SCRIPT -->
+  <script>
+    async function loadMindmap() {
+      const loadingEl = document.getElementById('loading');
+      const errorEl = document.getElementById('error');
+
+      try {
+        // mindmap.md muss im gleichen Ordner liegen wie index.html
+        const res = await fetch('./mindmap2.md');
+        if (!res.ok) {
+          throw new Error('HTTP ' + res.status + ' ' + res.statusText);
+        }
+
+        const markdown = await res.text();
+
+        // mindmap-Container erzeugen
+        const container = document.createElement('div');
+        container.className = 'markmap';
+
+        // Markdown als Template einfügen
+        const script = document.createElement('script');
+        script.type = 'text/template';
+        script.textContent = markdown;
+
+        container.appendChild(script);
+        document.body.appendChild(container);
+
+        // Markmap rendern
+        if (window.markmap && window.markmap.autoLoader) {
+          window.markmap.autoLoader.renderAll();
+        } else {
+          throw new Error('Markmap AutoLoader ist nicht verfügbar.');
+        }
+
+        loadingEl.style.display = 'none';
+      }
+      catch (err) {
+        loadingEl.style.display = 'none';
+        errorEl.style.display = 'block';
+        errorEl.textContent =
+          'Fehler beim Laden der Mindmap:\n' +
+          (err.message || err.toString()) +
+          '\n\nStimmt mindmap.md und liegt es im gleichen Ordner wie index.html?';
+      }
+    }
+
+    loadMindmap();
+  </script>
+
+</body>
+</html>
