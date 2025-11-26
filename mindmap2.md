@@ -3,7 +3,7 @@
 
 
 
-## St. Josef gGmbH (Zentrale)
+## St. Josef gGmbH (GLR)
 ### (7×7-Struktur)
 
 ## Verwaltung
