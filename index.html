@@ -58,7 +58,7 @@
   <script src="https://cdn.jsdelivr.net/npm/markmap-lib@0.15.4/dist/transform.min.js"></script>
 
   <script>
-    // HIER die RAW-URL deiner mindmap.md eintragen:
+    // mindmap.md liegt im gleichen Ordner wie index.html
     const RAW_URL = './mindmap.md';
 
     const loadingEl = document.getElementById('loading');
@@ -77,7 +77,7 @@
         const { Markmap } = window.markmap;
 
         const { root } = transform(markdown);
-        const mm = Markmap.create(svg, null, root);
+        Markmap.create(svg, null, root);
 
         loadingEl.style.display = 'none';
       } catch (err) {
@@ -85,9 +85,9 @@
         loadingEl.style.display = 'none';
         errorEl.style.display = 'block';
         errorEl.textContent =
-          'Fehler beim Laden der Mindmap:\\n' +
+          'Fehler beim Laden der Mindmap:\n' +
           (err && err.message ? err.message : String(err)) +
-          '\\n\\nStimmt die RAW_URL in index.html?';
+          '\n\nStimmt der Dateiname (mindmap.md) und liegt die Datei im gleichen Ordner wie index.html?';
       }
     }
 
