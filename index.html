@@ -1,170 +1,104 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <title>SharePoint Mindmap – St. Josef</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
+  <title>SharePoint Mindmap – St. Josef</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        width: 100%;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        #legend {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 260px;
-  max-height: 85vh;
-  overflow-y: auto;
+  <!-- STYLES -->
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f5;
+    }
 
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(6px);
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 12px 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  font-size: 13px;
-  z-index: 9999;
-}
+    #loading {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      padding: 6px 10px;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-size: 12px;
+      border-radius: 4px;
+      z-index: 9999;
+    }
 
-#legend h3 {
-  margin-top: 0;
-  margin-bottom: 6px;
-  font-size: 15px;
-}
+    #error {
+      position: fixed;
+      top: 40px;
+      left: 10px;
+      padding: 6px 10px;
+      background: rgba(180, 0, 0, 0.9);
+      color: white;
+      font-size: 12px;
+      border-radius: 4px;
+      z-index: 9999;
+      display: none;
+      max-width: 90vw;
+      white-space: pre-wrap;
+    }
 
-      }
+    /* SCHWEBENDE LEGENDE */
+    #legend {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 260px;
+      max-height: 85vh;
+      overflow-y: auto;
 
-      body {
-        background: #f5f5f5;
-        <div id="legend">
-  <h3>Legende</h3>
-  <p><strong>(7×7-Struktur)</strong>: An dieser Stelle wird eine vollständige Ordnerstruktur angelegt:</p>
-  <ol>
-    <li>01 Organisation & Verwaltung</li>
-    <li>02 Personal</li>
-    <li>03 Konzeption & Qualität</li>
-    <li>04 Pädagogik / Fachliches</li>
-    <li>05 Finanzen & Verträge</li>
-    <li>06 Öffentlichkeitsarbeit</li>
-    <li>07 Archiv</li>
-  </ol>
-  <p><strong>08 Leitung (geschützt)</strong>: Bereich nur für Leitungen.</p>
-  <p><em>Ebene 2:</em> bis zu 7 Unterordner.<br>
-     <em>Ebene 3:</em> frei durch Standort benennbar.</p>
-</div>
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(6px);
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      font-size: 13px;
+      z-index: 9999;
+    }
 
-      }
+    #legend h3 {
+      margin-top: 0;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
 
-      #loading {
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        padding: 6px 10px;
-        background: rgba(0, 0, 0, 0.7);
-        color: #fff;
-        font-size: 12px;
-        border-radius: 4px;
-        z-index: 10;
-      }
+    /* Mindmap Container */
+    .markmap {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
 
-      #error {
-        position: fixed;
-        top: 40px;
-        left: 10px;
-        padding: 6px 10px;
-        background: rgba(180, 0, 0, 0.9);
-        color: #fff;
-        font-size: 12px;
-        border-radius: 4px;
-        z-index: 10;
-        display: none;
-        max-width: 90vw;
-        white-space: pre-wrap;
-      }
+    .markmap > svg {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 
-      .markmap {
-        position: relative;
-        width: 100vw;
-        height: 100vh;
-      }
+  <!-- Markmap Autoloader config -->
+  <script>
+    window.markmap = {
+      autoLoader: {
+        manual: true,
+        toolbar: true,
+      },
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@latest"></script>
 
-      .markmap > svg {
-        width: 100%;
-        height: 100%;
-      }
-    </style>
+</head>
 
-    <!-- Konfiguration für markmap-autoloader:
-         - manual: true  → wir starten das Rendering selbst
-         - toolbar: true → Toolbar mit Zoom etc. -->
-    <script>
-      window.markmap = {
-        autoLoader: {
-          manual: true,
-          toolbar: true,
-        },
-      };
-    </script>
-    <!-- Autoloader lädt Markmap + D3 etc. automatisch -->
-    <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@latest"></script>
-  </head>
+<body>
 
-  <body>
-    <div id="loading">Lade Mindmap …</div>
-    <div id="error"></div>
+  <!-- LADEN / FEHLER -->
+  <div id="loading">Lade Mindmap …</div>
+  <div id="error"></div>
 
-    <script>
-      const loadingEl = document.getElementById('loading');
-      const errorEl = document.getElementById('error');
-
-      async function loadMindmap() {
-        try {
-          // mindmap.md liegt im gleichen Ordner wie index.html
-          const res = await fetch('./mindmap2.md');
-          if (!res.ok) {
-            throw new Error('HTTP ' + res.status + ' ' + res.statusText);
-          }
-
-          const markdown = await res.text();
-
-          // Container für Markmap erzeugen
-          const container = document.createElement('div');
-          container.className = 'markmap';
-
-          // Markdown in ein <script type="text/template"> packen
-          const script = document.createElement('script');
-          script.type = 'text/template';
-          script.textContent = markdown;
-
-          container.appendChild(script);
-          document.body.appendChild(container);
-
-          // Jetzt alle .markmap-Elemente rendern
-          if (window.markmap && window.markmap.autoLoader) {
-            window.markmap.autoLoader.renderAll();
-          } else {
-            throw new Error('markmap.autoLoader ist nicht verfügbar');
-          }
-
-          loadingEl.style.display = 'none';
-        } catch (err) {
-          console.error(err);
-          loadingEl.style.display = 'none';
-          errorEl.style.display = 'block';
-          errorEl.textContent =
-            'Fehler beim Laden der Mindmap:\n' +
-            (err && err.message ? err.message : String(err)) +
-            '\n\nPrüfe bitte:\n' +
-            '- Liegt mindmap.md im gleichen Ordner wie index.html?\n' +
-            '- Heißt die Datei genau „mindmap.md“?\n';
-        }
-      }
-
-      loadMindmap();
-    </script>
-  </body>
-</html>
+  <!-- SCHWEBENDE LEGENDE -->
+  <div id=
