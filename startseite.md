@@ -1,8 +1,8 @@
 # SharePoint Gesamtstruktur – St. Josef gGmbH
 
-## Startseite (Unternehmensweit)
+## Startseite St. Josef
 ### (7x7-Struktur)
-#### Leitfaeden & Handbuecher
+#### Leitfaden & Handbuecher
 #### Formulare & Antraege
 #### Schulungen & Unterweisungen
 #### Datenschutz & Recht
@@ -12,7 +12,7 @@
 
 ---
 
-## St. Josef gGmbH (Zentrale)
+## St. Josef gGmbH GLR
 ### (7x7-Struktur)
 
 ---
