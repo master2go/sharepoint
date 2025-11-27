@@ -127,7 +127,7 @@
 
       try {
         // mindmap.md muss im gleichen Ordner liegen wie index.html
-        const res = await fetch('./mindmap2.md');
+        const res = await fetch('./startseite.md');
         if (!res.ok) {
           throw new Error('HTTP ' + res.status + ' ' + res.statusText);
         }
