@@ -4,7 +4,7 @@
 - **GLR (Geschaeftsleitungsrunde)**  
   Bestehend aus: GF, Bereichsleitung Kita, HzE, Schule  
 - **Bereichsleitungen**  
-- **Standortleitungen** (KiTa, HzE, Schulen)  
+- **Fachbereichsleitungen** (KiTa, HzE, Schulen)  
 - **Mitarbeitende / Teams**
 
 ---
@@ -30,7 +30,7 @@
 
 ---
 
-### 🟡 3. Standortleitung (z. B. KiTa-Leitung)
+### 🟡 3. Fachbereichsleitung (z. B. KiTa-Leitung)
 **Rechte:**
 - Owner der eigenen Standort-Site
 - Bearbeiten auf der Bereichs-Site
@@ -55,22 +55,22 @@
 ### A) Startseite (unternehmensweit)
 - GLR: Owner  
 - Bereichsleitungen: Mitwirken  
-- Standortleitungen: Lesen  
+- Fachbereichsleitungen: Lesen  
 - Mitarbeitende: Lesen  
 
-### B) Bereichs-Site (z. B. Kindertagesstaetten)
+### B) Bereichs-Site (z. B. Maria Regina)
 - Bereichsleitung: Owner  
 - GLR: Lesen  
-- Standortleitungen: Bearbeiten  
+- Fachbereichsleitungen: Bearbeiten  
 - Mitarbeitende: Lesen (optional)  
 - 08_Leitung: Nur Bereichsleitung + GF  
 
 ### C) Standort-Site (z. B. Kita 15)
-- Standortleitung: Owner  
+- Fachbereichsleitung: Owner  
 - Bereichsleitung: Bearbeiten  
 - Teammitglieder: Bearbeiten  
 - Andere Standorte: Kein Zugriff  
-- 08_Leitung: Nur Standortleitung + Bereichsleitung  
+- 08_Leitung: Nur Fachbereichsleitung + Bereichsleitung  
 
 ---
 
@@ -88,7 +88,7 @@
 |--------------------|------------|---------|----------|------------|
 | **GLR**            | Owner      | Lesen   | Lesen    | Optional   |
 | **Bereichsleitung**| Lesen      | Owner   | Bearbeiten | Vollzugriff |
-| **Standortleitung**| Lesen      | Bearbeiten | Owner   | Vollzugriff |
+| **Fachbereichsleitung**| Lesen      | Bearbeiten | Owner   | Vollzugriff |
 | **Teammitglied**   | Lesen      | Lesen (opt.) | Bearbeiten | Kein Zugriff |
 
 ---
