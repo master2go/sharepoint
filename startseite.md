@@ -2,11 +2,11 @@
 
 ## Startseite St. Josef
 ### (7x7-Struktur)
-#### Leitfaden & Handbuecher
-#### Formulare & Antraege
-#### Schulungen & Unterweisungen
-#### Datenschutz & Recht
-#### Qualitaet & Standards
+#### Leitfaden 
+#### Lerncampus
+#### Onboarding
+#### Datenschutz 
+#### MAV
 #### Unternehmensweite Informationen
 #### Links zu allen Bereichen
 
