@@ -1,8 +1,9 @@
-# Startseite St. Josef
+# Startseite St. Josef (Lesend alle, schreibend wie bisher)
 ## Leitfaden
 ## Lerncampus
 ## Onboarding
 ## Datenschutz
+## Haustechnik
 ## MAV
 ## Unternehmensweite Informationen
 ##usw
@@ -66,4 +67,9 @@
 
 ### Verwaltung (Berechtigung Verwaltung)
 #### (7x7-Struktur)
+### Kitas (Q-Handbuch, Fobis..., Berechtigung alle)
+### HzE (Grenzachtender Umgang, Q-Handbuch..., Berechtigung alle)
+### Schule
+
+### Alle weiteren Elemente des Organigrams Bereiche arbeiten "nur" mit onedrive
 
