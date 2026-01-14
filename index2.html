@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>SharePoint Mindmap – St. Josef</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- STYLES -->
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f5;
+    }
+
+    #loading {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      padding: 6px 10px;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-size: 12px;
+      border-radius: 4px;
+      z-index: 9999;
+    }
+
+    #error {
+      position: fixed;
+      top: 40px;
+      left: 10px;
+      padding: 6px 10px;
+      background: rgba(180, 0, 0, 0.9);
+      color: white;
+      font-size: 12px;
+      border-radius: 4px;
+      z-index: 9999;
+      display: none;
+      max-width: 90vw;
+      white-space: pre-wrap;
+    }
+
+    /* SCHWEBENDE LEGENDE */
+    #legend {
+      position: fixed;
+      bottom: 70px;
+      left: 70px;
+      width: 260px;
+      max-height: 85vh;
+      overflow-y: auto;
+
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(6px);
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      font-size: 13px;
+      z-index: 9999;
+    }
+
+    #legend h3 {
+      margin-top: 0;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    /* Mindmap Container */
+    .markmap {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .markmap > svg {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+  <!-- Markmap Autoloader config -->
+  <script>
+    window.markmap = {
+      autoLoader: {
+        manual: true,
+        toolbar: true,
+      },
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@latest"></script>
+
+</head>
+
+<body>
+
+  <!-- LADEN / FEHLER -->
+  <div id="loading">Lade Mindmap …</div>
+  <div id="error"></div>
+
+  <!-- SCHWEBENDE LEGENDE -->
+  <div id="legend">
+    <h3>Legende</h3>
+    Jedes Element des Organigramms ist eine Sharepointseite.</p>
+    <p><strong>(7×7-Struktur)</strong>: An dieser Stelle wird die vollständige Ordnerstruktur angelegt:</p>
+    
+    <ol>
+      <li>01 Organisation & Verwaltung</li>
+      <li>02 Personal</li>
+      <li>03 Konzeption & Qualität</li>
+      <li>04 Pädagogik / Fachliches</li>
+      <li>05 Finanzen & Verträge</li>
+      <li>06 Öffentlichkeitsarbeit</li>
+      <li>07 Archiv</li>
+    </ol>
+    <p><strong>08 Leitung (geschützt)</strong><br>
+       Bereich nur für Leitungen, vertraulich.</p>
+    <p><em>Ebene 2:</em> bis zu 7 Unterordner<br>
+       <em>Ebene 3:</em> frei durch Standort benennbar</p>
+  </div>
+
+  <!-- MINDMAP SCRIPT -->
+  <script>
+    async function loadMindmap() {
+      const loadingEl = document.getElementById('loading');
+      const errorEl = document.getElementById('error');
+
+      try {
+        // mindmap.md muss im gleichen Ordner liegen wie index.html
+        const res = await fetch('./seitenstruktur.md');
+        if (!res.ok) {
+          throw new Error('HTTP ' + res.status + ' ' + res.statusText);
+        }
+
+        const markdown = await res.text();
+
+        // mindmap-Container erzeugen
+        const container = document.createElement('div');
+        container.className = 'markmap';
+
+        // Markdown als Template einfügen
+        const script = document.createElement('script');
+        script.type = 'text/template';
+        script.textContent = markdown;
+
+        container.appendChild(script);
+        document.body.appendChild(container);
+
+        // Markmap rendern
+        if (window.markmap && window.markmap.autoLoader) {
+          window.markmap.autoLoader.renderAll();
+        } else {
+          throw new Error('Markmap AutoLoader ist nicht verfügbar.');
+        }
+
+        loadingEl.style.display = 'none';
+      }
+      catch (err) {
+        loadingEl.style.display = 'none';
+        errorEl.style.display = 'block';
+        errorEl.textContent =
+          'Fehler beim Laden der Mindmap:\n' +
+          (err.message || err.toString()) +
+          '\n\nStimmt mindmap.md und liegt es im gleichen Ordner wie index.html?';
+      }
+    }
+
+    loadMindmap();
+  </script>
+
+</body>
+</html>
