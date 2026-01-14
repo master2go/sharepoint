@@ -71,5 +71,5 @@
 ### HzE (Grenzachtender Umgang, Q-Handbuch..., Berechtigung alle)
 ### Schule
 
-### Alle weiteren Elemente des Organigrams Bereiche arbeiten "nur" mit onedrive
+### Alle weiteren Ebenen des Organigrams Bereiche arbeiten "nur" mit onedrive
 
