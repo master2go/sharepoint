@@ -27,7 +27,7 @@
 - Kita 14  [ROT] [BLAU] [GRÜN]
 - Kita 15  [ROT] [BLAU] [GRÜN]
 - Kita 16  [ROT] [BLAU] [GRÜN]
-- Nicht belegt: Kita 4 / 6 / 8 / 10
+
 
 ### Ebene 2 – HzE-Leitungen  [ROT] [BLAU] [GRÜN]
 - Ambulante Hilfen Bad Cannstatt             [ROT] [BLAU] [GRÜN]
