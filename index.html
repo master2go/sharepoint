@@ -27,6 +27,26 @@
       border-radius: 4px;
       z-index: 9999;
     }
+    /* Toggle-Button für die Legende */
+#legendToggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10000;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* Wenn ausgeblendet */
+#legend.hidden {
+  display: none;
+}
 
     #error {
       position: fixed;
