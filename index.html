@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>SharePoint Mindmap – St. Josef</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- STYLES -->
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f5;
+    }
+
+    #loading {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      padding: 6px 10px;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-size: 12px;
+      border-radius: 4px;
+      z-index: 9999;
+    }
+
+    #error {
+      position: fixed;
+      top: 40px;
+      left: 10px;
+      padding: 6px 10px;
+      background: rgba(180, 0, 0, 0.9);
+      color: white;
+      font-size: 12px;
+      border-radius: 4px;
+      z-index: 9999;
+      display: none;
+      max-width: 90vw;
+      white-space: pre-wrap;
+    }
+
+    /* SCHWEBENDE LEGENDE */
+    #legend {
+      position: fixed;
+      bottom: 70px;
+      left: 70px;
+      width: 320px;
+      max-height: 85vh;
+      overflow-y: auto;
+
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(6px);
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 12px 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.16);
+      font-size: 13px;
+      z-index: 9999;
+    }
+
+    #legend h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    /* Mindmap Container */
+    .markmap {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .markmap > svg {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+  <!-- Markmap Autoloader config -->
+  <script>
+    window.markmap = {
+      autoLoader: {
+        manual: true,
+        toolbar: true,
+      },
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@latest"></script>
+
+</head>
+
+<body>
+
+  <!-- LADEN / FEHLER -->
+  <div id="loading">Lade Mindmap …</div>
+  <div id="error"></div>
+
+  <!-- SCHWEBENDE LEGENDE (Rot/Blau/Grün statt 7×7) -->
+  <div id="legend">
+    <h3>Legende</h3>
+
+    <p><strong>Grundprinzip</strong><br>
+      Jedes Element der Mindmap entspricht einer <strong>SharePoint-Seite</strong> (Einstiegspunkt).
+      Inhalte liegen in den zugehörigen <strong>Bibliotheken/Containern</strong>.
+    </p>
+
+    <hr style="border:none;border-top:1px solid #ddd;margin:10px 0;">
+
+    <p style="margin:0 0 6px 0;"><strong>Container / Bibliotheken (pro Ebene möglich)</strong></p>
+
+    <ul style="padding-left:18px;margin-top:6px;">
+      <li>
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d62d2d;margin-right:8px;vertical-align:middle;"></span>
+        <strong>ROT</strong> – Arbeitsraum / Austausch (geschützt)<br>
+        <span style="color:#555;">z. B. Leitung ↔ Koordination/Gruppenleitung, interne Abstimmung</span>
+      </li>
+      <li style="margin-top:8px;">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#1c66c5;margin-right:8px;vertical-align:middle;"></span>
+        <strong>BLAU</strong> – Bereich/Standort-intern für <strong>alle MA</strong><br>
+        <span style="color:#555;">Team-/Alltagsinfos, Vorlagen, interne Ablage</span><br>
+        <em style="color:#777;">Hinweis: [BLAU] ist vorgesehen, kann je Bereich optional bleiben.</em>
+      </li>
+      <li style="margin-top:8px;">
+        <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#40993b;margin-right:8px;vertical-align:middle;"></span>
+        <strong>GRÜN</strong> – Veröffentlichung / breite Streuung<br>
+        <span style="color:#555;">Inhalte, die bewusst weitergegeben werden (bereichsweit/organisationsweit)</span>
+      </li>
+    </ul>
+
+    <hr style="border:none;border-top:1px solid #ddd;margin:10px 0;">
+
+    <p style="margin:0 0 6px 0;"><strong>Beispiel (Kita-Ebene)</strong></p>
+    <p style="margin:0;color:#555;">
+      <strong>Kita 12</strong> hat (je nach Bedarf) drei Bibliotheken:
+    </p>
+    <ul style="padding-left:18px;margin-top:6px;margin-bottom:0;">
+      <li><strong>ROT</strong>: „Leitung ↔ Gruppenleitung – intern“</li>
+      <li><strong>BLAU</strong>: „Kita 12 – Team (alle MA)“</li>
+      <li><strong>GRÜN</strong>: „Kita 12 – Veröffentlichung“</li>
+    </ul>
+
+    <p style="margin-top:10px;color:#777;font-size:12px;">
+      Tipp: In der Mindmap sind die Ebenen als Überschriften geführt (Ebene 3 → Ebene 2 → Ebene 1).
+    </p>
+  </div>
+
+  <!-- MINDMAP SCRIPT -->
+  <script>
+    async function loadMindmap() {
+      const loadingEl = document.getElementById('loading');
+      const errorEl = document.getElementById('error');
+
+      try {
+        // startseite.md muss im gleichen Ordner liegen wie index.html
+        const res = await fetch('./startseite.md');
+        if (!res.ok) {
+          throw new Error('HTTP ' + res.status + ' ' + res.statusText);
+        }
+
+        const markdown = await res.text();
+
+        // mindmap-Container erzeugen
+        const container = document.createElement('div');
+        container.className = 'markmap';
+
+        // Markdown als Template einfügen
+        const script = document.createElement('script');
+        script.type = 'text/template';
+        script.textContent = markdown;
+
+        container.appendChild(script);
+        document.body.appendChild(container);
+
+        // Markmap rendern
+        if (window.markmap && window.markmap.autoLoader) {
+          window.markmap.autoLoader.renderAll();
+        } else {
+          throw new Error('Markmap AutoLoader ist nicht verfügbar.');
+        }
+
+        loadingEl.style.display = 'none';
+      }
+      catch (err) {
+        loadingEl.style.display = 'none';
+        errorEl.style.display = 'block';
+        errorEl.textContent =
+          'Fehler beim Laden der Mindmap:\n' +
+          (err.message || err.toString()) +
+          '\n\nStimmt startseite.md und liegt es im gleichen Ordner wie index.html?';
+      }
+    }
+
+    loadMindmap();
+  </script>
+
+</body>
+</html>
