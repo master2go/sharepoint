@@ -1,19 +1,16 @@
 # SharePoint Gesamtstruktur – St. Josef gGmbH
 
 ## Legende: Bibliotheken / Container pro Bereich
-- **[ROT]** = Austausch / Arbeitsraum (z. B. Leitung ↔ Koordination / Gruppenleitung) – geschützt  
-- **[BLAU]** = Bereich/Standort-intern für **alle MA** des jeweiligen Bereichs/Standorts  
+- **[ROT]** = Austausch / Arbeitsraum (z. B. Leitung ↔ Koordination / Gruppenleitung) – geschützt
+- **[BLAU]** = Bereich/Standort-intern für **alle MA** des jeweiligen Bereichs/Standorts *(optional je Bereich)*
 - **[GRÜN]** = Veröffentlichung / breite Streuung (bereichsweit oder organisationsweit – je nach Ebene)
 
-> **Hinweis (Diskussionspunkt):**  
-> **[BLAU]** ist auf *allen Ebenen* vorgesehen, kann aber je Ebene/Bereich **optional** bleiben, falls nicht benötigt.  
-> Jeder Bereich verfügt innerhalb seiner Bibliothek(en) über eine **7×7-Grundstruktur**.
+> **Hinweis:** [BLAU] ist überall möglich, aber je Bereich **diskutierbar/optional**.
 
 ---
 
-## Ebene 0 – Startseite St. Josef (Portal)
-**Bibliotheken/Container:** **[BLAU] [GRÜN]** *(Diskussion: [BLAU] optional)*  
-### (7×7-Struktur)
+## Ebene 0 – Startseite (Portal)
+**Container:** **[BLAU] [GRÜN]**
 - Leitfaden
 - Lerncampus
 - Onboarding
@@ -24,118 +21,65 @@
 
 ---
 
-## Ebene 3 – St. Josef gGmbH GLR
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]** *(Diskussion: [BLAU] optional)*  
+## Ebene 3 – GLR (Gesamtleitung)
+**Container:** **[ROT] [BLAU] [GRÜN]**
 - **[ROT]** GLR intern / Steuerung
-- **[BLAU]** intern für alle Leitungen/GLR-Teilnehmende (falls benötigt)
+- **[BLAU]** intern für alle Leitungen/GLR-Teilnehmende *(optional)*
 - **[GRÜN]** Informationen an Leitungen / Bereichsübergreifendes
 
-### (7×7-Struktur)
+### Ebene 2 – Leitungs- und Funktionsbereiche (entstehen aus GLR)
 
----
+#### Kitaleitungen
+**Container:** **[ROT] [BLAU] [GRÜN]**
 
-## Ebene 2 – Querschnitt / Leitungsbereiche
-> Diese Ebene bündelt Leitungs- und Funktionsbereiche (bereichsübergreifend).
+##### Ebene 1 – Kindertagesstätten (entstehen aus Kitaleitungen)
+- **Kita 1** – **[ROT] [BLAU] [GRÜN]**
+- **Kita 2** – **[ROT] [BLAU] [GRÜN]**
+- **Kita 3** – **[ROT] [BLAU] [GRÜN]**
+- **Kita 5** – **[ROT] [BLAU] [GRÜN]**
+- **Kita 7** – **[ROT] [BLAU] [GRÜN]**
+- **Kita 9** – **[ROT] [BLAU] [GRÜN]**
+- **Kita 11** – **[ROT] [BLAU] [GRÜN]**
+- **Kita 12** – **[ROT] [BLAU] [GRÜN]**
+- **Kita 13** – **[ROT] [BLAU] [GRÜN]**
+- **Kita 14** – **[ROT] [BLAU] [GRÜN]**
+- **Kita 15** – **[ROT] [BLAU] [GRÜN]**
+- **Kita 16** – **[ROT] [BLAU] [GRÜN]**
 
-### Kitaleitungen
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
+> Nicht belegt: **Kita 4 / 6 / 8 / 10**
 
-### HzE-Leitungen
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
+#### HzE-Leitungen
+**Container:** **[ROT] [BLAU] [GRÜN]**
 
-### Verwaltung
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
+##### Ebene 1 – Teams/Standorte (entstehen aus HzE-Leitungen)
+- Ambulante Hilfen Bad Cannstatt – **[ROT] [BLAU] [GRÜN]**
+- Ambulante Hilfen Stuttgart Ost – **[ROT] [BLAU] [GRÜN]**
+- Stationäre Hilfen Stuttgart Ost + BJW – **[ROT] [BLAU] [GRÜN]**
+- Stationäre Hilfen Bad Cannstatt – **[ROT] [BLAU] [GRÜN]**
+- Team Brücke – **[ROT] [BLAU] [GRÜN]**
 
-### Hauswirtschaft
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
+#### Angebote an Schulen
+**Container:** **[ROT] [BLAU] [GRÜN]**
 
-### Haustechnik
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
+##### Ebene 1 – Standorte/Angebote (entstehen aus Angebote an Schulen)
+- WRS Ostheim – **[ROT] [BLAU] [GRÜN]**
+- Eichendorffschule – **[ROT] [BLAU] [GRÜN]**
+- Schülerhaus Ostheim – **[ROT] [BLAU] [GRÜN]**
+- Bertha-von-Suttner-Schule – **[ROT] [BLAU] [GRÜN]**
+- Bergerschule (Schulsozialarbeit) – **[ROT] [BLAU] [GRÜN]**
+- Gustav-Werner-Schule – **[ROT] [BLAU] [GRÜN]**
+- Helene-Schoettle-Schule – **[ROT] [BLAU] [GRÜN]**
+- Bodelschwingh-Schule – **[ROT] [BLAU] [GRÜN]**
+- Eingliederungshilfen (Standorte) – **[ROT] [BLAU] [GRÜN]**
 
----
+#### Verwaltung
+**Container:** **[ROT] [BLAU] [GRÜN]**
+- (bei Bedarf: Unterbereiche/Teams hier ergänzen)
 
-## Ebene 1 – Kindertagesstätten (Kitas)
-> Jede Kita hat die drei Container gemäß Legende.
+#### Hauswirtschaft
+**Container:** **[ROT] [BLAU] [GRÜN]**
+- (bei Bedarf: Unterbereiche/Teams hier ergänzen)
 
-### Kita 1
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
-
-### Kita 2
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
-
-### Kita 3
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
-
-### Kita 5
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
-
-### Kita 7
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
-
-### Kita 9
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
-
-### Kita 11
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
-
-### Kita 12
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
-
-### Kita 13
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
-
-### Kita 14
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
-
-### Kita 15
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
-
-### Kita 16
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
-
-> **Nicht belegt:** Kita 4 / 6 / 8 / 10
-
----
-
-## Ebene 1 – Hilfen zur Erziehung
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
-
-- Ambulante Hilfen Bad Cannstatt
-- Ambulante Hilfen Stuttgart Ost
-- Stationäre Hilfen Stuttgart Ost + BJW
-- Stationäre Hilfen Bad Cannstatt
-- Team Brücke
-
----
-
-## Ebene 1 – Angebote an Schulen
-**Bibliotheken/Container:** **[ROT] [BLAU] [GRÜN]**  
-### (7×7-Struktur)
-
-- WRS Ostheim
-- Eichendorffschule
-- Schülerhaus Ostheim
-- Bertha-von-Suttner-Schule
-- Bergerschule (Schulsozialarbeit)
-- Gustav-Werner-Schule
-- Helene-Schoettle-Schule
-- Bodelschwingh-Schule
-- Eingliederungshilfen (Standorte)
+#### Haustechnik
+**Container:** **[ROT] [BLAU] [GRÜN]**
+- (bei Bedarf: Unterbereiche/Teams hier ergänzen)
