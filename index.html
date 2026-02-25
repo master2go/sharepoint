@@ -5,7 +5,6 @@
   <title>SharePoint Mindmap – St. Josef</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- STYLES -->
   <style>
     html, body {
       margin: 0;
@@ -27,26 +26,6 @@
       border-radius: 4px;
       z-index: 9999;
     }
-    /* Toggle-Button für die Legende */
-#legendToggle {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  z-index: 10000;
-  border: 1px solid #ccc;
-  border-radius: 999px;
-  padding: 8px 10px;
-  background: rgba(255,255,255,0.94);
-  backdrop-filter: blur(6px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-  cursor: pointer;
-  font-size: 13px;
-}
-
-/* Wenn ausgeblendet */
-#legend.hidden {
-  display: none;
-}
 
     #error {
       position: fixed;
@@ -63,20 +42,42 @@
       white-space: pre-wrap;
     }
 
+    /* Toggle-Button für die Legende */
+    #legendToggle {
+      position: fixed;
+      top: 20px;         /* bewusst oben rechts, damit nichts überdeckt */
+      right: 20px;
+      z-index: 10000;
+      border: 1px solid #ccc;
+      border-radius: 999px;
+      padding: 8px 10px;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* Wenn ausgeblendet */
+    #legend.hidden {
+      display: none;
+    }
+
     /* SCHWEBENDE LEGENDE */
     #legend {
       position: fixed;
       bottom: 20px;
       left: 20px;
-      width: 340px;
-      max-height: 60vh;
+
+      width: 360px;      /* breiter */
+      max-height: 40vh;  /* weniger hoch */
       overflow-y: auto;
 
       background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(6px);
       border: 1px solid #ccc;
       border-radius: 10px;
-      padding: 10px 12px;
+      padding: 10px 14px;
       box-shadow: 0 6px 16px rgba(0,0,0,0.16);
       font-size: 12px;
       z-index: 9999;
@@ -84,9 +85,14 @@
 
     #legend h3 {
       margin-top: 0;
-      margin-bottom: 8px;
-      font-size: 15px;
+      margin-bottom: 6px;
+      font-size: 14px;
     }
+
+    /* Etwas kompaktere Abstände */
+    #legend p { margin: 6px 0; }
+    #legend ul { margin: 6px 0; }
+    #legend hr { margin: 8px 0; }
 
     /* Mindmap Container */
     .markmap {
@@ -111,16 +117,19 @@
     };
   </script>
   <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@latest"></script>
-
 </head>
 
 <body>
-
   <!-- LADEN / FEHLER -->
   <div id="loading">Lade Mindmap …</div>
   <div id="error"></div>
 
-  <!-- SCHWEBENDE LEGENDE (Rot/Blau/Grün statt 7×7) -->
+  <!-- Toggle Button -->
+  <button id="legendToggle" type="button" aria-controls="legend" aria-expanded="true">
+    Legende ausblenden
+  </button>
+
+  <!-- SCHWEBENDE LEGENDE (Rot/Blau/Grün) -->
   <div id="legend">
     <h3>Legende</h3>
 
@@ -129,11 +138,11 @@
       Inhalte liegen in den zugehörigen <strong>Bibliotheken/Containern</strong>.
     </p>
 
-    <hr style="border:none;border-top:1px solid #ddd;margin:10px 0;">
+    <hr style="border:none;border-top:1px solid #ddd;">
 
-    <p style="margin:0 0 6px 0;"><strong>Container / Bibliotheken (pro Ebene möglich)</strong></p>
+    <p><strong>Container / Bibliotheken (pro Ebene möglich)</strong></p>
 
-    <ul style="padding-left:18px;margin-top:6px;">
+    <ul style="padding-left:18px;">
       <li>
         <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#d62d2d;margin-right:8px;vertical-align:middle;"></span>
         <strong>ROT</strong> – Arbeitsraum / Austausch (geschützt)<br>
@@ -152,43 +161,48 @@
       </li>
     </ul>
 
-    <hr style="border:none;border-top:1px solid #ddd;margin:10px 0;">
+    <hr style="border:none;border-top:1px solid #ddd;">
 
-    <p style="margin:0 0 6px 0;"><strong>Beispiel (Kita-Ebene)</strong></p>
-    <p style="margin:0;color:#555;">
+    <p><strong>Beispiel (Kita)</strong></p>
+    <p style="color:#555;">
       <strong>Kita 12</strong> hat (je nach Bedarf) drei Bibliotheken:
     </p>
-    <ul style="padding-left:18px;margin-top:6px;margin-bottom:0;">
+    <ul style="padding-left:18px;">
       <li><strong>ROT</strong>: „Leitung ↔ Gruppenleitung – intern“</li>
       <li><strong>BLAU</strong>: „Kita 12 – Team (alle MA)“</li>
       <li><strong>GRÜN</strong>: „Kita 12 – Veröffentlichung“</li>
     </ul>
-
-    <p style="margin-top:10px;color:#777;font-size:12px;">
-      Tipp: In der Mindmap sind die Ebenen als Überschriften geführt (Ebene 3 → Ebene 2 → Ebene 1).
-    </p>
   </div>
 
   <!-- MINDMAP SCRIPT -->
   <script>
+    // Legende ein-/ausblenden
+    const legend = document.getElementById('legend');
+    const toggleBtn = document.getElementById('legendToggle');
+
+    toggleBtn.addEventListener('click', () => {
+      const isHidden = legend.classList.toggle('hidden');
+      toggleBtn.textContent = isHidden ? 'Legende einblenden' : 'Legende ausblenden';
+      toggleBtn.setAttribute('aria-expanded', String(!isHidden));
+    });
+
     async function loadMindmap() {
       const loadingEl = document.getElementById('loading');
       const errorEl = document.getElementById('error');
 
       try {
         // startseite.md muss im gleichen Ordner liegen wie index.html
-        const res = await fetch('./startseite.md');
+        // Cache umgehen: v=timestamp
+        const res = await fetch('./startseite.md?v=' + Date.now());
         if (!res.ok) {
           throw new Error('HTTP ' + res.status + ' ' + res.statusText);
         }
 
         const markdown = await res.text();
 
-        // mindmap-Container erzeugen
         const container = document.createElement('div');
         container.className = 'markmap';
 
-        // Markdown als Template einfügen
         const script = document.createElement('script');
         script.type = 'text/template';
         script.textContent = markdown;
@@ -196,7 +210,6 @@
         container.appendChild(script);
         document.body.appendChild(container);
 
-        // Markmap rendern
         if (window.markmap && window.markmap.autoLoader) {
           window.markmap.autoLoader.renderAll();
         } else {
@@ -217,6 +230,5 @@
 
     loadMindmap();
   </script>
-
 </body>
 </html>
