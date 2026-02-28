@@ -34,7 +34,7 @@
 - Ambulante Hilfen Stuttgart Ost             [ROT] [BLAU] [GRÜN]
 - Stationäre Hilfen Stuttgart Ost + BJW      [ROT] [BLAU] [GRÜN]
 - Stationäre Hilfen Bad Cannstatt            [ROT] [BLAU] [GRÜN]
-- Team Brücke                                [ROT] [BLAU] [GRÜN]
+- usw              
 
 ### Ebene 2 – Angebote an Schulen  [ROT] [BLAU] [GRÜN]
 - WRS Ostheim                                [ROT] [BLAU] [GRÜN]
