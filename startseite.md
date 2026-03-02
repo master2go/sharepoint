@@ -7,7 +7,7 @@
 - Datenschutz
 - MAV
 - Unternehmensweite Informationen
-- Links zu allen Bereichen
+  
 
 ## Ebene 3 – GLR (Gesamtleitung)  [ROT] [BLAU] [GRÜN]
 - ROT: GLR intern / Steuerung
